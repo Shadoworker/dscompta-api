@@ -1732,7 +1732,7 @@
         "affectsGlobalScope": false
       },
       "./src/application.ts": {
-        "version": "0bc73e46a78566f23f6bc6264892bc4dcd0dd0e4753cd545d547a2da43496536",
+        "version": "7ca1553d0ea889555d7f7ad9a8258b750fa138ed6889d82f80402a4684b3818c",
         "signature": "7ca1b68f2a9b99749e93068174d197346fa956db0a1c8510052bd8c8398204c2",
         "affectsGlobalScope": false
       },
@@ -1997,18 +1997,13 @@
         "affectsGlobalScope": false
       },
       "./src/controllers/file-download.controller.ts": {
-        "version": "153713066ecdc3fbc5895dc154f10a709bc1180d16eae7e4fcdcb83ce7d290a3",
+        "version": "509da51fe4db9e8fe028b9f8101f75c6d12271738cc3c40c48dbd549ab1e1175",
         "signature": "882f6b143fa0c15c45771dfbfc82eac63e7f5d2ce5fc5c00e482d5374d1735d1",
         "affectsGlobalScope": false
       },
       "./src/controllers/file-upload.controller.ts": {
-        "version": "74814a44755eb23786b922744b0552135dba84ba2751d797350b8bbaa3bc2aa9",
+        "version": "a32c8d214d0dc832a8005df7f94e54aafeeb72543fa3c5cd14dec1ab1d56ba14",
         "signature": "ca2c0319f36c22951c2424a25d4977dcbfa2b560d860c9ca5cd856f0900cf395",
-        "affectsGlobalScope": false
-      },
-      "./src/controllers/index.ts": {
-        "version": "86e91f1c356ee1722eef1b47bee8638a17e99b5af87c3c61858f654bde3751b8",
-        "signature": "6d723ec9e7d7a78745d8b1c894284754d5617b5bd74f821e09063e2487f4441a",
         "affectsGlobalScope": false
       },
       "./src/controllers/license.controller.ts": {
@@ -2016,19 +2011,19 @@
         "signature": "f697005f5ff7af68657e7fa614dbe283ce7ec03567d154a8cb7cff9baadd389a",
         "affectsGlobalScope": false
       },
-      "./node_modules/tesseract.js/src/index.d.ts": {
-        "version": "1954facb49bb5832f92ec2abab5431fd1cdd859121eb6bbb837cdc4ea64733e1",
-        "signature": "1954facb49bb5832f92ec2abab5431fd1cdd859121eb6bbb837cdc4ea64733e1",
-        "affectsGlobalScope": false
-      },
       "./node_modules/axios/index.d.ts": {
         "version": "0d892f035dbee4534f0ba096407136877595ca592f67ec9bb8a5c912b9c967e8",
         "signature": "0d892f035dbee4534f0ba096407136877595ca592f67ec9bb8a5c912b9c967e8",
         "affectsGlobalScope": false
       },
+      "./node_modules/tesseract.js/src/index.d.ts": {
+        "version": "1954facb49bb5832f92ec2abab5431fd1cdd859121eb6bbb837cdc4ea64733e1",
+        "signature": "1954facb49bb5832f92ec2abab5431fd1cdd859121eb6bbb837cdc4ea64733e1",
+        "affectsGlobalScope": false
+      },
       "./src/controllers/tesseract.controller.ts": {
-        "version": "fcd855447b5596ead61a503fe62e0e585f36028ccfc0c0131c5125797cc4f737",
-        "signature": "a19864734f885d54c2dab25e2832ad741668d0fb9ff2980b39365eeb45fc250d",
+        "version": "2b2fdd981faeb41c2e9552e8a0fda194e9bdb9daacbd7412314812a77f120c49",
+        "signature": "5f8544eeea5fd81553c2f630c80d2035bbb430e47c61769578a8153d7a6dd243",
         "affectsGlobalScope": false
       },
       "./src/controllers/user-company.controller.ts": {
@@ -2039,6 +2034,11 @@
       "./src/controllers/user.controller.ts": {
         "version": "29b40c5d678dc47249075fc61d19cf2db038b28dde8a775f1148c47e60d62fe0",
         "signature": "b8507ae6b31a5cdc331115fd768649bc8a95b24189cf1d2297042a37a6995574",
+        "affectsGlobalScope": false
+      },
+      "./src/controllers/index.ts": {
+        "version": "c92a9c9eb1b8c18e26a4e4c67d655a88a708f6b5ec6b4603a053dd8e4ba5d26e",
+        "signature": "d812bbcb5675f0825d6fa4ecec75d357ab721d778aa7dab245417fa628b6e822",
         "affectsGlobalScope": false
       },
       "./src/services/file-upload.service.ts": {
@@ -3747,8 +3747,23 @@
       ],
       "./src/controllers/index.ts": [
         "./node_modules/tslib/tslib.d.ts",
+        "./src/controllers/bill-company.controller.ts",
+        "./src/controllers/bill.controller.ts",
+        "./src/controllers/company-bill.controller.ts",
+        "./src/controllers/company-computed-bill.controller.ts",
+        "./src/controllers/company-user.controller.ts",
+        "./src/controllers/company.controller.ts",
+        "./src/controllers/computed-bill-company.controller.ts",
+        "./src/controllers/computed-bill-computed-bill-item.controller.ts",
+        "./src/controllers/computed-bill-item-computed-bill.controller.ts",
+        "./src/controllers/computed-bill-item.controller.ts",
+        "./src/controllers/computed-bill.controller.ts",
         "./src/controllers/file-download.controller.ts",
-        "./src/controllers/file-upload.controller.ts"
+        "./src/controllers/file-upload.controller.ts",
+        "./src/controllers/license.controller.ts",
+        "./src/controllers/tesseract.controller.ts",
+        "./src/controllers/user-company.controller.ts",
+        "./src/controllers/user.controller.ts"
       ],
       "./src/controllers/license.controller.ts": [
         "./node_modules/@loopback/repository/dist/index.d.ts",
@@ -3763,7 +3778,6 @@
         "./node_modules/axios/index.d.ts",
         "./node_modules/tesseract.js/src/index.d.ts",
         "./node_modules/tslib/tslib.d.ts",
-        "./src/controllers/bill.controller.ts",
         "./src/models/index.ts",
         "./src/repositories/index.ts"
       ],
@@ -5520,8 +5534,23 @@
         "./src/types.ts"
       ],
       "./src/controllers/index.ts": [
+        "./src/controllers/bill-company.controller.ts",
+        "./src/controllers/bill.controller.ts",
+        "./src/controllers/company-bill.controller.ts",
+        "./src/controllers/company-computed-bill.controller.ts",
+        "./src/controllers/company-user.controller.ts",
+        "./src/controllers/company.controller.ts",
+        "./src/controllers/computed-bill-company.controller.ts",
+        "./src/controllers/computed-bill-computed-bill-item.controller.ts",
+        "./src/controllers/computed-bill-item-computed-bill.controller.ts",
+        "./src/controllers/computed-bill-item.controller.ts",
+        "./src/controllers/computed-bill.controller.ts",
         "./src/controllers/file-download.controller.ts",
-        "./src/controllers/file-upload.controller.ts"
+        "./src/controllers/file-upload.controller.ts",
+        "./src/controllers/license.controller.ts",
+        "./src/controllers/tesseract.controller.ts",
+        "./src/controllers/user-company.controller.ts",
+        "./src/controllers/user.controller.ts"
       ],
       "./src/controllers/license.controller.ts": [
         "./node_modules/@loopback/repository/dist/index.d.ts",

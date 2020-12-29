@@ -62,6 +62,12 @@ export class FileUploadApplication extends BootMixin(ServiceMixin(RepositoryMixi
         destination,
         // Use the original file name as is
         filename: (req, file, cb) => {
+
+          var parts = file.originalname.split('.'),
+            extension = parts[parts.length - 1];
+          var newFilename = (new Date()).valueOf() + '_' + parts[parts.length - 2] + '.' + extension;
+          file.originalname = newFilename;
+
           cb(null, file.originalname);
         },
       }),

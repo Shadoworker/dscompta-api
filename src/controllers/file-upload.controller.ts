@@ -83,7 +83,8 @@ export class FileUploadController {
     },
   })
   bill: String): Promise<any> {
-    const text = await _ocrad('C:/Users/Shadow/Desktop/GeneralWorks/ExternalWorks/Faseya/DsCompta/Tests/file-transfer/public/fact_2.png');
+    // const text = await _ocrad('C:/Users/Shadow/Desktop/GeneralWorks/ExternalWorks/Faseya/DsCompta/dscomptaApi/public/fact_2.png');
+    const text = await _ocrad('./.sandbox/fact_2.png');
     console.log(text);
     return {text: text};
   }
@@ -97,6 +98,7 @@ export class FileUploadController {
     const mapper = (f: globalThis.Express.Multer.File) => ({
       fieldname: f.fieldname,
       originalname: f.originalname,
+      filename: f.filename,
       encoding: f.encoding,
       mimetype: f.mimetype,
       size: f.size,

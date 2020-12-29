@@ -4,10 +4,10 @@ exports.TesseractController = void 0;
 const tslib_1 = require("tslib");
 const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
-const models_1 = require("../models");
-const tesseract_js_1 = tslib_1.__importDefault(require("tesseract.js"));
-const repositories_1 = require("../repositories");
 const axios_1 = tslib_1.__importDefault(require("axios"));
+const tesseract_js_1 = tslib_1.__importDefault(require("tesseract.js"));
+const models_1 = require("../models");
+const repositories_1 = require("../repositories");
 var ocrad = require('async-ocrad');
 let config = {
     headers: {
@@ -167,12 +167,40 @@ let TesseractController = class TesseractController {
     //     //  |_____ Call a specific method for that SaveRef(image, data) --> Give Id and Append Type (Compta, Bill, Order, DebCard ...)
     //   })
     // }
-    async ocradize(bill) {
-        var uri = bill.uri;
-        const text = await ocrad(uri);
-        console.log(text);
-        return "processed";
-    }
+    // @post('/ocradize', {
+    //   responses: {
+    //     '200': {
+    //       description: 'File Read',
+    //       content: {
+    //         'application/json': {
+    //           schema: {
+    //             type: 'string',
+    //             properties: {
+    //               output: {
+    //                 type: 'string'
+    //               }
+    //             }
+    //           }
+    //         }
+    //       }
+    //     }
+    //   }
+    // })
+    // async ocradize(@requestBody({
+    //   content: {
+    //     'application/json': {
+    //       schema: getModelSchemaRef(Bill, {
+    //         title: 'NewUpload',
+    //       }),
+    //     },
+    //   },
+    // })
+    // bill: Bill): Promise<any> {
+    //   var uri = bill.uri;
+    //   const text = await ocrad(uri);
+    //   console.log(text);
+    //   return "processed";
+    // }
     async create(tesseract) {
         return this.tesseractRepository.create(tesseract);
     }
@@ -231,39 +259,6 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [Array]),
     tslib_1.__metadata("design:returntype", Promise)
 ], TesseractController.prototype, "tess", null);
-tslib_1.__decorate([
-    rest_1.post('/ocradize', {
-        responses: {
-            '200': {
-                description: 'File Read',
-                content: {
-                    'application/json': {
-                        schema: {
-                            type: 'string',
-                            properties: {
-                                output: {
-                                    type: 'string'
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }),
-    tslib_1.__param(0, rest_1.requestBody({
-        content: {
-            'application/json': {
-                schema: rest_1.getModelSchemaRef(models_1.Bill, {
-                    title: 'NewUpload',
-                }),
-            },
-        },
-    })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [models_1.Bill]),
-    tslib_1.__metadata("design:returntype", Promise)
-], TesseractController.prototype, "ocradize", null);
 tslib_1.__decorate([
     rest_1.post('/tesseracts', {
         responses: {

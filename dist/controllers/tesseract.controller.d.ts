@@ -1,11 +1,10 @@
 import { Count, Filter, FilterExcludingWhere, Where } from '@loopback/repository';
-import { Tesseract, Bill } from '../models';
+import { Bill, Tesseract } from '../models';
 import { TesseractRepository } from '../repositories';
 export declare class TesseractController {
     tesseractRepository: TesseractRepository;
     constructor(tesseractRepository: TesseractRepository);
     tess(bills: Bill[]): Promise<any>;
-    ocradize(bill: Bill): Promise<any>;
     create(tesseract: Tesseract): Promise<Tesseract>;
     count(where?: Where<Tesseract>): Promise<Count>;
     find(filter?: Filter<Tesseract>): Promise<Tesseract[]>;

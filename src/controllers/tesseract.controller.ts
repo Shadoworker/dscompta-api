@@ -4,52 +4,55 @@ import {
   Filter,
   FilterExcludingWhere,
   repository,
-  Where,
+  Where
 } from '@loopback/repository';
 import {
-  post,
-  param,
-  get,
-  getModelSchemaRef,
-  patch,
+  del, get,
+  getModelSchemaRef, param,
+
+
+  patch, post,
+
+
+
+
   put,
-  del,
-  requestBody,
+
+  requestBody
 } from '@loopback/rest';
-import {Tesseract, Bill} from '../models';
+import axios, {AxiosRequestConfig} from 'axios';
 import TesseractService from 'tesseract.js';
-import {TesseractRepository, BillRepository} from '../repositories';
-import { BillController } from './bill.controller';
-import axios, { AxiosRequestConfig } from 'axios';
+import {Bill, Tesseract} from '../models';
+import {TesseractRepository} from '../repositories';
 
 var ocrad = require('async-ocrad');
 
-let config : AxiosRequestConfig = {
-  headers: {  
-              "Access-Control-Allow-Origin" : "*",
-              Accept: 'application/json', 
-             'Content-Type': 'application/json' 
-          },
+let config: AxiosRequestConfig = {
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+    Accept: 'application/json',
+    'Content-Type': 'application/json'
+  },
   responseType: 'json'
 };
 
 let baseUrl = 'https://dscomptaapi.herokuapp.com';
 
-async function _updateBill(bill : any) {
-  
-  return await axios.patch(baseUrl+'/bills/'+bill.id, bill);
+async function _updateBill(bill: any) {
+
+  return await axios.patch(baseUrl + '/bills/' + bill.id, bill);
 
 }
 
-function _isDigit(n:any) {
+function _isDigit(n: any) {
   return Boolean([true, true, true, true, true, true, true, true, true, true][n]);
 }
 
 export class TesseractController {
   constructor(
     @repository(TesseractRepository)
-    public tesseractRepository : TesseractRepository,
-  ) {}
+    public tesseractRepository: TesseractRepository,
+  ) { }
 
 
 
@@ -86,9 +89,9 @@ export class TesseractController {
     },
   })
   bills: Bill[]): Promise<any> {
-    
-    bills.forEach((bill)=>{
- 
+
+    bills.forEach((bill) => {
+
       var uri = bill.uri || "";
       var base64string = "";
       base64string = uri.split(',')[1];
@@ -96,36 +99,35 @@ export class TesseractController {
       bill.status = "progress";
 
       // We Update the file status into "progress" ... For UI presets
-      return _updateBill(bill).then((data)=>{
+      return _updateBill(bill).then((data) => {
         // ----------TESSERACT MAGIC------------
         // return {ex1 : "Ok"}
         return TesseractService.recognize(
           Buffer.from(base64string, 'base64'),
-            'eng',
-            {})
+          'eng',
+          {})
           .then(({data: {text}}) => {
-            
-           
+
+
             // Make search ....
             // Set keywords and update status to "success"
             let _text = text.toLowerCase();
             // --------------- TVA -------------
             let percentageSymbolIndex = _text.search("%");
             let tva = "";
-            for (let charIndex = (percentageSymbolIndex-1); charIndex >= 0; charIndex--) {
+            for (let charIndex = (percentageSymbolIndex - 1); charIndex >= 0; charIndex--) {
               const char = _text[charIndex];
-              if(!_isDigit(char) && char != ".") break; // Avoid stopping at dot "."
-              if(char == " ") break;
-                tva = char + tva; // We are reading from RtL
-                tva = tva.replace(/ /g,'');
+              if (!_isDigit(char) && char != ".") break; // Avoid stopping at dot "."
+              if (char == " ") break;
+              tva = char + tva; // We are reading from RtL
+              tva = tva.replace(/ /g, '');
             }
-            if(tva.search('.') != -1) // Has Decimal part
+            if (tva.search('.') != -1) // Has Decimal part
             {
               var tva_int = tva.split('.')[0];
               var _tva = "";
-              if(tva_int.length > 2 )
-              {
-                _tva = tva_int[tva_int.length-2] + tva_int[tva_int.length-1]
+              if (tva_int.length > 2) {
+                _tva = tva_int[tva_int.length - 2] + tva_int[tva_int.length - 1]
                 tva = _tva + "." + tva.split('.')[1];
               }
             }
@@ -134,43 +136,39 @@ export class TesseractController {
             let dateStringIndex = _text.search("date") + 3; // To end the string
             let date = "";
             var hasReachedInt = false;
-            for (let charIndex = (dateStringIndex+1); charIndex < _text.length; charIndex++) {
+            for (let charIndex = (dateStringIndex + 1); charIndex < _text.length; charIndex++) {
               const char = _text[charIndex];
               // if(!_isDigit(char) && char != "/" && char != "-") // Avoid stopping at "/" or "-"
               //   break;
-              if(hasReachedInt)
-              {
-                if(!_isDigit(char) && char != "/" && char != "-" && char != " ")
+              if (hasReachedInt) {
+                if (!_isDigit(char) && char != "/" && char != "-" && char != " ")
                   break;
               }
-              
-              if(_isDigit(char) || char == "/" || char == "-")
-                {
-                  hasReachedInt = true;
-                  date = date + char; // Normal direction reading
-                  date = date.replace(/ /g,'');
-                }
+
+              if (_isDigit(char) || char == "/" || char == "-") {
+                hasReachedInt = true;
+                date = date + char; // Normal direction reading
+                date = date.replace(/ /g, '');
+              }
             }
             // ----------------------------------
             // --------------- HT -------------
             let htStringIndex = _text.lastIndexOf("ht") + 1; // To end the string
             let ht = "";
             var hasReachedInt = false;
-            for (let charIndex = (htStringIndex+1); charIndex < _text.length; charIndex++) {
+            for (let charIndex = (htStringIndex + 1); charIndex < _text.length; charIndex++) {
               const char = _text[charIndex];
-              
-              if(hasReachedInt)
-              {
-                if(!_isDigit(char) && char != "," && char != ".")
+
+              if (hasReachedInt) {
+                if (!_isDigit(char) && char != "," && char != ".")
                   break;
               }
-              
-              if(_isDigit(char) || char == "," || char == ".")
-              {
+
+              if (_isDigit(char) || char == "," || char == ".") {
                 hasReachedInt = true;
                 ht = ht + char; // Normal direction reading
-                ht = ht.replace(/ /g,'');
-                ht = ht.replace(/,/g,'');
+                ht = ht.replace(/ /g, '');
+                ht = ht.replace(/,/g, '');
               }
             }
             // ----------------------------------
@@ -186,51 +184,49 @@ export class TesseractController {
             // }
 
             var hasReachedInt = false;
-            for (let charIndex = (totalStringIndex+1); charIndex < _text.length; charIndex++) {
+            for (let charIndex = (totalStringIndex + 1); charIndex < _text.length; charIndex++) {
               const char = _text[charIndex];
-              
-              if(hasReachedInt)
-              {
-                if(!_isDigit(char) && char != "," && char != ".")
+
+              if (hasReachedInt) {
+                if (!_isDigit(char) && char != "," && char != ".")
                   break;
               }
-              
-              if(_isDigit(char) || char == "," || char == ".")
-              {
+
+              if (_isDigit(char) || char == "," || char == ".") {
                 hasReachedInt = true;
                 total = total + char; // Normal direction reading
-                total = total.replace(/ /g,'');
-                total = total.replace(/,/g,'');
+                total = total.replace(/ /g, '');
+                total = total.replace(/,/g, '');
               }
             }
 
             // ----------------------------------
             var dateParts = date.split("/");
-            var _d =  new Date(dateParts[2] + "/" + dateParts[1] + "/" +dateParts[0]);
+            var _d = new Date(dateParts[2] + "/" + dateParts[1] + "/" + dateParts[0]);
             // return {data : {ht : ht, tva : tva , ttc : total , date : date}}
             // UPDATE READ DATA
             bill.status = "success";
-            if(_d != undefined && _d != null)
-              bill.date =  _d;
+            if (_d != undefined && _d != null)
+              bill.date = _d;
             bill.ht = parseFloat(ht);
             bill.tva = parseFloat(tva);
             bill.ttc = parseFloat(total);
 
-            return _updateBill(bill).then((data)=>{});
-            
+            return _updateBill(bill).then((data) => { });
+
             // return  {ex2 : "Ok", date : _d, tva : tva,  ht : ht, ttc : total}
 
 
-          }).catch((err)=>{
+          }).catch((err) => {
 
             bill.status = "error";
-            return _updateBill(bill).then((data)=>{});
+            return _updateBill(bill).then((data) => { });
 
           })
 
       })
-      
-    
+
+
     }) // Foreach end
     // return "processed";
   }
@@ -260,46 +256,46 @@ export class TesseractController {
   // }
 
 
-  @post('/ocradize', {
-    responses: {
-      '200': {
-        description: 'File Read',
-        content: {
-          'application/json': {
-            schema: {
-              type: 'string',
-              properties: {
-                output: {
-                  type: 'string'
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  })
+  // @post('/ocradize', {
+  //   responses: {
+  //     '200': {
+  //       description: 'File Read',
+  //       content: {
+  //         'application/json': {
+  //           schema: {
+  //             type: 'string',
+  //             properties: {
+  //               output: {
+  //                 type: 'string'
+  //               }
+  //             }
+  //           }
+  //         }
+  //       }
+  //     }
+  //   }
+  // })
 
-  async ocradize(@requestBody({
-    content: {
-      'application/json': {
+  // async ocradize(@requestBody({
+  //   content: {
+  //     'application/json': {
 
-        schema: getModelSchemaRef(Bill, {
-          title: 'NewUpload',
-        }),
-      },
-    },
-  })
-  bill: Bill): Promise<any> {
+  //       schema: getModelSchemaRef(Bill, {
+  //         title: 'NewUpload',
+  //       }),
+  //     },
+  //   },
+  // })
+  // bill: Bill): Promise<any> {
 
-    var uri = bill.uri;
-    const text = await ocrad(uri);
-    console.log(text);
-    return "processed";
+  //   var uri = bill.uri;
+  //   const text = await ocrad(uri);
+  //   console.log(text);
+  //   return "processed";
 
-  }  
+  // }
 
-  
+
 
 
   @post('/tesseracts', {
@@ -316,7 +312,7 @@ export class TesseractController {
         'application/json': {
           schema: getModelSchemaRef(Tesseract, {
             title: 'NewTesseract',
-            
+
           }),
         },
       },
