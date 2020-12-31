@@ -60,35 +60,6 @@ export class FileUploadController {
 
 
 
-  @post('/ocrad', {
-    responses: {
-      200: {
-        content: {
-          'application/json': {
-            schema: {
-              type: 'object',
-            },
-          },
-        },
-        description: 'Files and fields',
-      },
-    },
-  })
-  async ocrad(@requestBody({
-    content: {
-      'application/json': {
-
-        schema: String,
-      },
-    },
-  })
-  bill: String): Promise<any> {
-    // const text = await _ocrad('C:/Users/Shadow/Desktop/GeneralWorks/ExternalWorks/Faseya/DsCompta/dscomptaApi/public/fact_2.png');
-    const text = await _ocrad('./.sandbox/fact_2.png');
-    console.log(text);
-    return {text: text};
-  }
-
   /**
    * Get files and fields for the request
    * @param request - Http request
