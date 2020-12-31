@@ -56,7 +56,8 @@
     "test:dev": "lb-mocha dist/__tests__/**/*.js && npm run posttest",
     "rebuild": "npm run clean && npm run build",
     "prestart": "npm run rebuild",
-    "start": "node ."
+    "start": "node .",
+    "heroku-postbuild": "npm run build"
   },
   "repository": {
     "type": "git",
