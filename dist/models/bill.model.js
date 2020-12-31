@@ -75,21 +75,21 @@ tslib_1.__decorate([
 tslib_1.__decorate([
     repository_1.property({
         type: 'number',
-        default: null,
+        default: -1,
     }),
     tslib_1.__metadata("design:type", Number)
 ], Bill.prototype, "ttc", void 0);
 tslib_1.__decorate([
     repository_1.property({
         type: 'number',
-        default: null,
+        default: -1,
     }),
     tslib_1.__metadata("design:type", Number)
 ], Bill.prototype, "ht", void 0);
 tslib_1.__decorate([
     repository_1.property({
         type: 'number',
-        default: null,
+        default: -1,
     }),
     tslib_1.__metadata("design:type", Number)
 ], Bill.prototype, "tva", void 0);

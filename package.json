@@ -21,6 +21,7 @@
     "@loopback/service-proxy": "^3.0.5",
     "async-ocrad": "^0.0.2",
     "axios": "^0.21.1",
+    "chrono-node": "^2.1.10",
     "loopback-connector-mongodb": "^5.5.0",
     "multer": "^1.4.2",
     "require": "^2.4.20",

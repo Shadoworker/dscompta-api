@@ -21,7 +21,7 @@ import {
   requestBody
 } from '@loopback/rest';
 import axios, {AxiosRequestConfig} from 'axios';
-import TesseractService from 'tesseract.js';
+import * as chrono from 'chrono-node';
 import {Bill, Tesseract} from '../models';
 import {TesseractRepository} from '../repositories';
 
@@ -90,144 +90,147 @@ export class TesseractController {
   })
   bills: Bill[]): Promise<any> {
 
-    bills.forEach((bill) => {
+    // bills.forEach((bill) => {
+    var bill = bills[0];
+    var uri = bill.uri || "";
+    // var base64string = "";
+    // base64string = uri.split(',')[1];
+    // Update Status
+    bill.status = "progress";
 
-      var uri = bill.uri || "";
-      var base64string = "";
-      base64string = uri.split(',')[1];
-      // Update Status
-      bill.status = "progress";
+    // We Update the file status into "progress" ... For UI presets
+    return _updateBill(bill).then(async (data) => {
+      // ----------TESSERACT MAGIC------------
+      // return {ex1 : "Ok"}
 
-      // We Update the file status into "progress" ... For UI presets
-      return _updateBill(bill).then((data) => {
-        // ----------TESSERACT MAGIC------------
-        // return {ex1 : "Ok"}
-        return TesseractService.recognize(
-          Buffer.from(base64string, 'base64'),
-          'eng',
-          {})
-          .then(({data: {text}}) => {
+      var text = await ocrad('./.sandbox/' + uri);
+      // console.log(text);
 
+      // Search ....
+      // Set keywords and update status to "success"
 
-            // Make search ....
-            // Set keywords and update status to "success"
-            let _text = text.toLowerCase();
-            // --------------- TVA -------------
-            let percentageSymbolIndex = _text.search("%");
-            let tva = "";
-            for (let charIndex = (percentageSymbolIndex - 1); charIndex >= 0; charIndex--) {
-              const char = _text[charIndex];
-              if (!_isDigit(char) && char != ".") break; // Avoid stopping at dot "."
-              if (char == " ") break;
-              tva = char + tva; // We are reading from RtL
-              tva = tva.replace(/ /g, '');
-            }
-            if (tva.search('.') != -1) // Has Decimal part
-            {
-              var tva_int = tva.split('.')[0];
-              var _tva = "";
-              if (tva_int.length > 2) {
-                _tva = tva_int[tva_int.length - 2] + tva_int[tva_int.length - 1]
-                tva = _tva + "." + tva.split('.')[1];
-              }
-            }
-            // ---------------------------------
-            // --------------- DATE -------------
-            let dateStringIndex = _text.search("date") + 3; // To end the string
-            let date = "";
-            var hasReachedInt = false;
-            for (let charIndex = (dateStringIndex + 1); charIndex < _text.length; charIndex++) {
-              const char = _text[charIndex];
-              // if(!_isDigit(char) && char != "/" && char != "-") // Avoid stopping at "/" or "-"
-              //   break;
-              if (hasReachedInt) {
-                if (!_isDigit(char) && char != "/" && char != "-" && char != " ")
-                  break;
-              }
+      let _text = text.toLowerCase();
+      // --------------- TVA -------------
+      let percentageSymbolIndex = _text.search("%");
+      let tva = "";
+      for (let charIndex = (percentageSymbolIndex - 1); charIndex >= 0; charIndex--) {
+        const char = _text[charIndex];
+        if (!_isDigit(char) && char != ".") break; // Avoid stopping at dot "."
+        if (char == " ") break;
+        tva = char + tva; // We are reading from RtL
+        tva = tva.replace(/ /g, '');
+      }
+      if (tva.search('.') != -1) // Has Decimal part
+      {
+        var tva_int = tva.split('.')[0];
+        var _tva = "";
+        if (tva_int.length > 2) {
+          _tva = tva_int[tva_int.length - 2] + tva_int[tva_int.length - 1]
+          tva = _tva + "." + tva.split('.')[1];
+        }
+      }
+      // Set To 0 if not found
+      if (tva == "") tva = "0";
+      // ---------------------------------
+      // --------------- DATE -------------
+      //@ts-ignore
+      var date = new Date(bill.date);
+      var firstDateStringIndex = _text.search("date");
+      var seekablePart = _text.slice(firstDateStringIndex);
+      date = chrono.fr.parseDate(seekablePart);
+      // ----------------------------------
+      // --------------- HT -------------
+      let htStringIndex = _text.lastIndexOf("total ht") + 1; // To end the string
+      let ht = "";
+      var hasReachedInt = false;
+      for (let charIndex = (htStringIndex + 1); charIndex < _text.length; charIndex++) {
+        const char = _text[charIndex];
 
-              if (_isDigit(char) || char == "/" || char == "-") {
-                hasReachedInt = true;
-                date = date + char; // Normal direction reading
-                date = date.replace(/ /g, '');
-              }
-            }
-            // ----------------------------------
-            // --------------- HT -------------
-            let htStringIndex = _text.lastIndexOf("ht") + 1; // To end the string
-            let ht = "";
-            var hasReachedInt = false;
-            for (let charIndex = (htStringIndex + 1); charIndex < _text.length; charIndex++) {
-              const char = _text[charIndex];
+        if (hasReachedInt) {
+          if (!_isDigit(char) && char != "," && char != ".")
+            break;
+        }
 
-              if (hasReachedInt) {
-                if (!_isDigit(char) && char != "," && char != ".")
-                  break;
-              }
+        if (_isDigit(char) || char == "," || char == ".") {
+          hasReachedInt = true;
+          ht = ht + char; // Normal direction reading
+          ht = ht.replace(/ /g, '');
+          ht = ht.replace(/,/g, '');
+        }
+      }
+      // ----------------------------------
+      // // --------------- TTC : Total -------------
+      let totalStringIndex = _text.lastIndexOf("total") + 4; // To end the string
+      let total;
 
-              if (_isDigit(char) || char == "," || char == ".") {
-                hasReachedInt = true;
-                ht = ht + char; // Normal direction reading
-                ht = ht.replace(/ /g, '');
-                ht = ht.replace(/,/g, '');
-              }
-            }
-            // ----------------------------------
-            // // --------------- TTC : Total -------------
-            let totalStringIndex = _text.lastIndexOf("total") + 4; // To end the string
-            let total = "";
-            // for (let charIndex = (totalStringIndex+1); charIndex < _text.length; charIndex++) {
-            //   const char = _text[charIndex];
-            //   if(!_isDigit(char) && char != "."  && char != " ") // Avoid stopping at "."
-            //     break;
-            //     total = total + char; // Normal direction reading
-            //     total = total.replace(/ /g,'');
-            // }
+      if (parseInt(tva) != NaN && parseInt(ht) != NaN) {
 
-            var hasReachedInt = false;
-            for (let charIndex = (totalStringIndex + 1); charIndex < _text.length; charIndex++) {
-              const char = _text[charIndex];
+        total = parseInt(ht) + (parseInt(ht) * parseInt(tva) / 100);
+      }
+      else {
 
-              if (hasReachedInt) {
-                if (!_isDigit(char) && char != "," && char != ".")
-                  break;
-              }
+        total = "";
 
-              if (_isDigit(char) || char == "," || char == ".") {
-                hasReachedInt = true;
-                total = total + char; // Normal direction reading
-                total = total.replace(/ /g, '');
-                total = total.replace(/,/g, '');
-              }
-            }
+        for (let charIndex = (totalStringIndex + 1); charIndex < _text.length; charIndex++) {
+          const char = _text[charIndex];
+          if (!_isDigit(char) && char != "." && char != " ") // Avoid stopping at "."
+            break;
+          total = total + char; // Normal direction reading
+          total = total.replace(/ /g, '');
+        }
 
-            // ----------------------------------
-            var dateParts = date.split("/");
-            var _d = new Date(dateParts[2] + "/" + dateParts[1] + "/" + dateParts[0]);
-            // return {data : {ht : ht, tva : tva , ttc : total , date : date}}
-            // UPDATE READ DATA
-            bill.status = "success";
-            if (_d != undefined && _d != null)
-              bill.date = _d;
-            bill.ht = parseFloat(ht);
-            bill.tva = parseFloat(tva);
-            bill.ttc = parseFloat(total);
+        var hasReachedInt = false;
+        for (let charIndex = (totalStringIndex + 1); charIndex < _text.length; charIndex++) {
+          const char = _text[charIndex];
 
-            return _updateBill(bill).then((data) => { });
+          if (hasReachedInt) {
+            if (!_isDigit(char) && char != "," && char != ".")
+              break;
+          }
 
-            // return  {ex2 : "Ok", date : _d, tva : tva,  ht : ht, ttc : total}
+          if (_isDigit(char) || char == "," || char == ".") {
+            hasReachedInt = true;
+            total = total + char; // Normal direction reading
+            total = total.replace(/ /g, '');
+            total = total.replace(/,/g, '');
+          }
+        }
 
+        total = parseInt(total);
 
-          }).catch((err) => {
+      }
 
-            bill.status = "error";
-            return _updateBill(bill).then((data) => { });
+      // ----------------------------------
+      // return {data : {ht : ht, tva : tva , ttc : total , date : date}}
+      // UPDATE READ DATA
+      bill.status = "success";
+      bill.date = date;
+      bill.ht = parseInt(ht);
+      bill.tva = parseInt(tva);
+      bill.ttc = total;
 
-          })
-
+      _updateBill(bill).then((data) => { }).catch((err) => {
+        bill.status = "error";
+        _updateBill(bill).then((data) => { });
       })
 
+      // return {result: "Ok", text: text, tva: tva, date: date, ht: ht, ttc: total};
 
-    }) // Foreach end
+      /**/
+      // }).catch((err) => {
+
+      //   bill.status = "error";
+      //   return _updateBill(bill).then((data) => { });
+
+      // })
+
+    }).catch((err) => {
+      bill.status = "error";
+      _updateBill(bill).then((data) => { });
+    })
+
+
+    //}) // Foreach end
     // return "processed";
   }
 

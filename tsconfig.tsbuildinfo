@@ -1857,7 +1857,7 @@
         "affectsGlobalScope": false
       },
       "./src/models/bill.model.ts": {
-        "version": "f3e8925339450d6918f38884a9ec62ed498b0f1cf0c34488daa6c940bfd721f6",
+        "version": "1e4dc07c28485450a91064d7052a7bc8886288b3988e4981c1f74c9ce179833a",
         "signature": "ae454ed33ef379b8d8c36a73a6f3865baad17e00a44755b8100e92dc27f2e683",
         "affectsGlobalScope": false
       },
@@ -2016,13 +2016,73 @@
         "signature": "0d892f035dbee4534f0ba096407136877595ca592f67ec9bb8a5c912b9c967e8",
         "affectsGlobalScope": false
       },
-      "./node_modules/tesseract.js/src/index.d.ts": {
-        "version": "1954facb49bb5832f92ec2abab5431fd1cdd859121eb6bbb837cdc4ea64733e1",
-        "signature": "1954facb49bb5832f92ec2abab5431fd1cdd859121eb6bbb837cdc4ea64733e1",
+      "./node_modules/chrono-node/dist/debugging.d.ts": {
+        "version": "fc5d30716d62b585fdabfa2f6cf0e2ab4592756c1b9defbd5bb9defbc2fc6fea",
+        "signature": "fc5d30716d62b585fdabfa2f6cf0e2ab4592756c1b9defbd5bb9defbc2fc6fea",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/dayjs/locale/types.d.ts": {
+        "version": "73a0ee6395819b063df4b148211985f2e1442945c1a057204cf4cf6281760dc3",
+        "signature": "73a0ee6395819b063df4b148211985f2e1442945c1a057204cf4cf6281760dc3",
+        "affectsGlobalScope": true
+      },
+      "./node_modules/dayjs/locale/index.d.ts": {
+        "version": "d05d8c67116dceafc62e691c47ac89f8f10cf7313cd1b2fb4fe801c2bf1bb1a7",
+        "signature": "d05d8c67116dceafc62e691c47ac89f8f10cf7313cd1b2fb4fe801c2bf1bb1a7",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/dayjs/index.d.ts": {
+        "version": "bfb7c0d444dcb259add3d70c37f9d0b61440885b674e15d104bcdf93f86fbffb",
+        "signature": "bfb7c0d444dcb259add3d70c37f9d0b61440885b674e15d104bcdf93f86fbffb",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chrono-node/dist/results.d.ts": {
+        "version": "8d3e8ffb07531b83815621a37a6c09dbf47d3a6c92cb641506a1a26c27d36654",
+        "signature": "8d3e8ffb07531b83815621a37a6c09dbf47d3a6c92cb641506a1a26c27d36654",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chrono-node/dist/chrono.d.ts": {
+        "version": "ed9f8889f9728f486ef22725e1b4b2008b7b4d6b4b3b0c89e00f3d75ecbfe0c0",
+        "signature": "ed9f8889f9728f486ef22725e1b4b2008b7b4d6b4b3b0c89e00f3d75ecbfe0c0",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chrono-node/dist/locales/en/index.d.ts": {
+        "version": "38d5105faad267b1994f5d4042a5d9a532df4a0e822d20cb95ab69d7c68dccdf",
+        "signature": "38d5105faad267b1994f5d4042a5d9a532df4a0e822d20cb95ab69d7c68dccdf",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chrono-node/dist/locales/de/index.d.ts": {
+        "version": "1462e4ef746a645671d5afdefafaa7e505f11a17f013227694b763b87005bfe7",
+        "signature": "1462e4ef746a645671d5afdefafaa7e505f11a17f013227694b763b87005bfe7",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chrono-node/dist/locales/fr/index.d.ts": {
+        "version": "1462e4ef746a645671d5afdefafaa7e505f11a17f013227694b763b87005bfe7",
+        "signature": "1462e4ef746a645671d5afdefafaa7e505f11a17f013227694b763b87005bfe7",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chrono-node/dist/locales/ja/index.d.ts": {
+        "version": "2c95703917295990c853f66b301ed4fa336c4f8f4d301c4c6a95808db4225456",
+        "signature": "2c95703917295990c853f66b301ed4fa336c4f8f4d301c4c6a95808db4225456",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chrono-node/dist/locales/pt/index.d.ts": {
+        "version": "1462e4ef746a645671d5afdefafaa7e505f11a17f013227694b763b87005bfe7",
+        "signature": "1462e4ef746a645671d5afdefafaa7e505f11a17f013227694b763b87005bfe7",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chrono-node/dist/locales/nl/index.d.ts": {
+        "version": "1462e4ef746a645671d5afdefafaa7e505f11a17f013227694b763b87005bfe7",
+        "signature": "1462e4ef746a645671d5afdefafaa7e505f11a17f013227694b763b87005bfe7",
+        "affectsGlobalScope": false
+      },
+      "./node_modules/chrono-node/dist/index.d.ts": {
+        "version": "155871ec4dda51e187d98fd125b75fde7670adac37a04b938cc6a087850e5b0b",
+        "signature": "155871ec4dda51e187d98fd125b75fde7670adac37a04b938cc6a087850e5b0b",
         "affectsGlobalScope": false
       },
       "./src/controllers/tesseract.controller.ts": {
-        "version": "2b2fdd981faeb41c2e9552e8a0fda194e9bdb9daacbd7412314812a77f120c49",
+        "version": "e12621d8f8f32164f30916e1745f04e441e8a722f839356cfa0bf28641f01e50",
         "signature": "5f8544eeea5fd81553c2f630c80d2035bbb430e47c61769578a8153d7a6dd243",
         "affectsGlobalScope": false
       },
@@ -3523,6 +3583,55 @@
         "./node_modules/@types/node/http.d.ts",
         "./node_modules/@types/node/index.d.ts"
       ],
+      "./node_modules/chrono-node/dist/chrono.d.ts": [
+        "./node_modules/chrono-node/dist/debugging.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts",
+        "./node_modules/chrono-node/dist/results.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/debugging.d.ts",
+        "./node_modules/chrono-node/dist/locales/de/index.d.ts",
+        "./node_modules/chrono-node/dist/locales/en/index.d.ts",
+        "./node_modules/chrono-node/dist/locales/fr/index.d.ts",
+        "./node_modules/chrono-node/dist/locales/ja/index.d.ts",
+        "./node_modules/chrono-node/dist/locales/nl/index.d.ts",
+        "./node_modules/chrono-node/dist/locales/pt/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/locales/de/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/locales/en/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/locales/fr/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/locales/ja/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/locales/nl/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/locales/pt/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/results.d.ts": [
+        "./node_modules/chrono-node/dist/index.d.ts",
+        "./node_modules/dayjs/index.d.ts"
+      ],
+      "./node_modules/dayjs/index.d.ts": [
+        "./node_modules/dayjs/locale/index.d.ts"
+      ],
+      "./node_modules/dayjs/locale/index.d.ts": [
+        "./node_modules/dayjs/locale/types.d.ts"
+      ],
       "./node_modules/loopback-datasource-juggler/index.d.ts": [
         "./node_modules/loopback-datasource-juggler/types/common.d.ts",
         "./node_modules/loopback-datasource-juggler/types/connector.d.ts",
@@ -3776,7 +3885,7 @@
         "./node_modules/@loopback/repository/dist/index.d.ts",
         "./node_modules/@loopback/rest/dist/index.d.ts",
         "./node_modules/axios/index.d.ts",
-        "./node_modules/tesseract.js/src/index.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts",
         "./node_modules/tslib/tslib.d.ts",
         "./src/models/index.ts",
         "./src/repositories/index.ts"
@@ -5366,6 +5475,55 @@
         "./node_modules/@types/node/http.d.ts",
         "./node_modules/@types/node/index.d.ts"
       ],
+      "./node_modules/chrono-node/dist/chrono.d.ts": [
+        "./node_modules/chrono-node/dist/debugging.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts",
+        "./node_modules/chrono-node/dist/results.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/debugging.d.ts",
+        "./node_modules/chrono-node/dist/locales/de/index.d.ts",
+        "./node_modules/chrono-node/dist/locales/en/index.d.ts",
+        "./node_modules/chrono-node/dist/locales/fr/index.d.ts",
+        "./node_modules/chrono-node/dist/locales/ja/index.d.ts",
+        "./node_modules/chrono-node/dist/locales/nl/index.d.ts",
+        "./node_modules/chrono-node/dist/locales/pt/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/locales/de/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/locales/en/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/locales/fr/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/locales/ja/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/locales/nl/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/locales/pt/index.d.ts": [
+        "./node_modules/chrono-node/dist/chrono.d.ts",
+        "./node_modules/chrono-node/dist/index.d.ts"
+      ],
+      "./node_modules/chrono-node/dist/results.d.ts": [
+        "./node_modules/chrono-node/dist/index.d.ts",
+        "./node_modules/dayjs/index.d.ts"
+      ],
+      "./node_modules/dayjs/index.d.ts": [
+        "./node_modules/dayjs/locale/index.d.ts"
+      ],
+      "./node_modules/dayjs/locale/index.d.ts": [
+        "./node_modules/dayjs/locale/types.d.ts"
+      ],
       "./node_modules/loopback-datasource-juggler/index.d.ts": [
         "./node_modules/loopback-datasource-juggler/types/common.d.ts",
         "./node_modules/loopback-datasource-juggler/types/connector.d.ts",
@@ -5996,6 +6154,19 @@
       "./node_modules/@types/type-is/index.d.ts",
       "./node_modules/ajv/lib/ajv.d.ts",
       "./node_modules/axios/index.d.ts",
+      "./node_modules/chrono-node/dist/chrono.d.ts",
+      "./node_modules/chrono-node/dist/debugging.d.ts",
+      "./node_modules/chrono-node/dist/index.d.ts",
+      "./node_modules/chrono-node/dist/locales/de/index.d.ts",
+      "./node_modules/chrono-node/dist/locales/en/index.d.ts",
+      "./node_modules/chrono-node/dist/locales/fr/index.d.ts",
+      "./node_modules/chrono-node/dist/locales/ja/index.d.ts",
+      "./node_modules/chrono-node/dist/locales/nl/index.d.ts",
+      "./node_modules/chrono-node/dist/locales/pt/index.d.ts",
+      "./node_modules/chrono-node/dist/results.d.ts",
+      "./node_modules/dayjs/index.d.ts",
+      "./node_modules/dayjs/locale/index.d.ts",
+      "./node_modules/dayjs/locale/types.d.ts",
       "./node_modules/hyperid/index.d.ts",
       "./node_modules/loopback-datasource-juggler/index.d.ts",
       "./node_modules/loopback-datasource-juggler/types/common.d.ts",
@@ -6022,7 +6193,6 @@
       "./node_modules/path-to-regexp/dist/index.d.ts",
       "./node_modules/reflect-metadata/index.d.ts",
       "./node_modules/strong-error-handler/index.d.ts",
-      "./node_modules/tesseract.js/src/index.d.ts",
       "./node_modules/tslib/tslib.d.ts",
       "./node_modules/typescript/lib/lib.dom.d.ts",
       "./node_modules/typescript/lib/lib.es2015.collection.d.ts",
