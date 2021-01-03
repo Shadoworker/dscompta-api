@@ -130,14 +130,26 @@ let TesseractController = class TesseractController {
             // ----------------------------------
             // return {data : {ht : ht, tva : tva , ttc : total , date : date}}
             // UPDATE READ DATA
+            var _ht = parseInt(ht);
+            if (total == null || total == undefined || isNaN(total))
+                total = 0;
+            if (_ht == null || _ht == undefined || isNaN(_ht))
+                _ht = 0;
+            if (date == null || date == undefined)
+                //@ts-ignore
+                date = bill.date;
             bill.status = "success";
             bill.date = date;
-            bill.ht = parseInt(ht);
+            bill.ht = _ht;
             bill.tva = parseInt(tva);
             bill.ttc = total;
-            _updateBill(bill).then((data) => { }).catch((err) => {
+            // // console.log(bill)
+            return _updateBill(bill).then((data) => { }).catch((err) => {
                 bill.status = "error";
-                _updateBill(bill).then((data) => { });
+                // console.log("err 1")
+                _updateBill(bill).then((data) => { }).catch(() => {
+                    // console.log("err 2")
+                });
             });
             // return {result: "Ok", text: text, tva: tva, date: date, ht: ht, ttc: total};
             /**/
@@ -147,7 +159,7 @@ let TesseractController = class TesseractController {
             // })
         }).catch((err) => {
             bill.status = "error";
-            _updateBill(bill).then((data) => { });
+            _updateBill(bill).then((data) => { }).catch(() => { });
         });
         //}) // Foreach end
         // return "processed";

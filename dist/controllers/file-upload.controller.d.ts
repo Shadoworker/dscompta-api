@@ -12,7 +12,6 @@ export declare class FileUploadController {
      */
     constructor(handler: FileUploadHandler);
     fileUpload(request: Request, response: Response): Promise<object>;
-    ocrad(bill: String): Promise<any>;
     /**
      * Get files and fields for the request
      * @param request - Http request

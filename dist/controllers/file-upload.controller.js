@@ -32,12 +32,6 @@ let FileUploadController = class FileUploadController {
             });
         });
     }
-    async ocrad(bill) {
-        // const text = await _ocrad('C:/Users/Shadow/Desktop/GeneralWorks/ExternalWorks/Faseya/DsCompta/dscomptaApi/public/fact_2.png');
-        const text = await _ocrad('./.sandbox/fact_2.png');
-        console.log(text);
-        return { text: text };
-    }
     /**
      * Get files and fields for the request
      * @param request - Http request
@@ -85,32 +79,6 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [Object, Object]),
     tslib_1.__metadata("design:returntype", Promise)
 ], FileUploadController.prototype, "fileUpload", null);
-tslib_1.__decorate([
-    rest_1.post('/ocrad', {
-        responses: {
-            200: {
-                content: {
-                    'application/json': {
-                        schema: {
-                            type: 'object',
-                        },
-                    },
-                },
-                description: 'Files and fields',
-            },
-        },
-    }),
-    tslib_1.__param(0, rest_1.requestBody({
-        content: {
-            'application/json': {
-                schema: String,
-            },
-        },
-    })),
-    tslib_1.__metadata("design:type", Function),
-    tslib_1.__metadata("design:paramtypes", [String]),
-    tslib_1.__metadata("design:returntype", Promise)
-], FileUploadController.prototype, "ocrad", null);
 FileUploadController = tslib_1.__decorate([
     tslib_1.__param(0, core_1.inject(keys_1.FILE_UPLOAD_SERVICE)),
     tslib_1.__metadata("design:paramtypes", [Function])
