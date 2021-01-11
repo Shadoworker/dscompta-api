@@ -78,6 +78,13 @@ export class ComputedBill extends Entity {
   })
   type?: string;
 
+  @property({
+    type: 'string',
+    default: "",
+  })
+  conditions?: string;
+
+
   @hasMany(() => ComputedBillItem)
   computedBillItems: ComputedBillItem[];
 
