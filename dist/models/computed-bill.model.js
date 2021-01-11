@@ -3,8 +3,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.ComputedBill = void 0;
 const tslib_1 = require("tslib");
 const repository_1 = require("@loopback/repository");
-const computed_bill_item_model_1 = require("./computed-bill-item.model");
 const company_model_1 = require("./company.model");
+const computed_bill_item_model_1 = require("./computed-bill-item.model");
 let ComputedBill = class ComputedBill extends repository_1.Entity {
     constructor(data) {
         super(data);
@@ -85,6 +85,12 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", String)
 ], ComputedBill.prototype, "logo", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], ComputedBill.prototype, "signing", void 0);
 tslib_1.__decorate([
     repository_1.property({
         type: 'string',

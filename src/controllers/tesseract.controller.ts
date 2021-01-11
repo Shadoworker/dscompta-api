@@ -139,6 +139,27 @@ export class TesseractController {
         var seekablePart = _text.slice(firstDateStringIndex);
         date = chrono.fr.parseDate(seekablePart);
         // ----------------------------------
+
+        // --------------- FACTURE NUMERO -------------
+        let noStringIndex = _text.lastIndexOf("n°") + 1; // To end the string
+        let no = "";
+        var hasReachedInt = false;
+        for (let charIndex = (noStringIndex + 1); charIndex < _text.length; charIndex++) {
+          const char = _text[charIndex];
+
+          if (hasReachedInt) {
+            if (!_isDigit(char) && char != "," && char != ".")
+              break;
+          }
+
+          if (_isDigit(char) || char == "," || char == ".") {
+            hasReachedInt = true;
+            no = no + char; // Normal direction reading
+            no = no.replace(/ /g, '');
+            no = no.replace(/,/g, '');
+          }
+        }
+
         // --------------- HT -------------
         let htStringIndex = _text.lastIndexOf("total ht") + 1; // To end the string
         let ht = "";
@@ -201,6 +222,7 @@ export class TesseractController {
         }
 
         // ----------------------------------
+        // console.log({data: {ht: ht, tva: tva, ttc: total, date: date, no: no}});
         // return {data : {ht : ht, tva : tva , ttc : total , date : date}}
         // UPDATE READ DATA
         var _ht = parseInt(ht);

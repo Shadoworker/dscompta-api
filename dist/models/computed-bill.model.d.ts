@@ -13,6 +13,7 @@ export declare class ComputedBill extends Entity {
     deadline?: string;
     total?: number;
     logo?: string;
+    signing?: string;
     type?: string;
     computedBillItems: ComputedBillItem[];
     companyId: string;

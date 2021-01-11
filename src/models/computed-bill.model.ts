@@ -1,6 +1,6 @@
-import {Entity, model, property, hasMany, belongsTo} from '@loopback/repository';
-import {ComputedBillItem} from './computed-bill-item.model';
+import {belongsTo, Entity, hasMany, model, property} from '@loopback/repository';
 import {Company} from './company.model';
+import {ComputedBillItem} from './computed-bill-item.model';
 
 @model()
 export class ComputedBill extends Entity {
@@ -66,6 +66,11 @@ export class ComputedBill extends Entity {
     type: 'string',
   })
   logo?: string;
+
+  @property({
+    type: 'string',
+  })
+  signing?: string;
 
   @property({
     type: 'string',
