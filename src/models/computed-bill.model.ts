@@ -62,10 +62,10 @@ export class ComputedBill extends Entity {
   })
   total?: number;
 
-  @property({
-    type: 'array',
-  })
-  items?: any;
+  // @property({
+  //   type: 'array',
+  // })
+  // items?: any;
 
   @property({
     type: 'string',
