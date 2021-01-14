@@ -63,6 +63,11 @@ export class ComputedBill extends Entity {
   total?: number;
 
   @property({
+    type: 'array',
+  })
+  items?: number;
+
+  @property({
     type: 'string',
   })
   logo?: string;
@@ -84,6 +89,11 @@ export class ComputedBill extends Entity {
   })
   conditions?: string;
 
+  @property({
+    type: 'string',
+    default: "Non suivi",
+  })
+  status?: string;
 
   @hasMany(() => ComputedBillItem)
   computedBillItems: ComputedBillItem[];
