@@ -12,9 +12,12 @@ export declare class ComputedBill extends Entity {
     no_order?: number;
     deadline?: string;
     total?: number;
+    items?: object[];
     logo?: string;
     signing?: string;
     type?: string;
+    conditions?: string;
+    status?: string;
     computedBillItems: ComputedBillItem[];
     companyId: string;
     constructor(data?: Partial<ComputedBill>);

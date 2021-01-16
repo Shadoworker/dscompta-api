@@ -81,6 +81,13 @@ tslib_1.__decorate([
 ], ComputedBill.prototype, "total", void 0);
 tslib_1.__decorate([
     repository_1.property({
+        type: 'array',
+        itemType: 'object'
+    }),
+    tslib_1.__metadata("design:type", Array)
+], ComputedBill.prototype, "items", void 0);
+tslib_1.__decorate([
+    repository_1.property({
         type: 'string',
     }),
     tslib_1.__metadata("design:type", String)
@@ -98,6 +105,20 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", String)
 ], ComputedBill.prototype, "type", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+        default: "",
+    }),
+    tslib_1.__metadata("design:type", String)
+], ComputedBill.prototype, "conditions", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+        default: "Non suivi",
+    }),
+    tslib_1.__metadata("design:type", String)
+], ComputedBill.prototype, "status", void 0);
 tslib_1.__decorate([
     repository_1.hasMany(() => computed_bill_item_model_1.ComputedBillItem),
     tslib_1.__metadata("design:type", Array)

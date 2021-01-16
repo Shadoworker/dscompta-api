@@ -1882,8 +1882,8 @@
         "affectsGlobalScope": false
       },
       "./src/models/computed-bill.model.ts": {
-        "version": "509d04c1c6b3f2408ee8a7b7c6adccfe28f1f3fbc9254e68421b3f7249991fff",
-        "signature": "2876bc35cf9f0a14032f248f7ec19f119fcb241945e9ac33f5d48d696fefba2b",
+        "version": "dae10b3330390fa772c93487723cf537183c8eba3af7d2dc0d7fc04115c9691f",
+        "signature": "938f66c9611ba7f8dcfccd6675e0d090c8d56a9c5dcb126a37938fe03cef77d0",
         "affectsGlobalScope": false
       },
       "./src/models/index.ts": {
@@ -2082,7 +2082,7 @@
         "affectsGlobalScope": false
       },
       "./src/controllers/tesseract.controller.ts": {
-        "version": "9185c005b7359ae8393dbbd94652094ce9dfd6d318f3a833738e03d3990913dc",
+        "version": "bd85399cd5eb6e4a1bdc90049697ca4d5b1bd8b079c521e3e8be06ef7390e856",
         "signature": "5f8544eeea5fd81553c2f630c80d2035bbb430e47c61769578a8153d7a6dd243",
         "affectsGlobalScope": false
       },

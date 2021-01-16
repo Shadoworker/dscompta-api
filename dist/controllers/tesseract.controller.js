@@ -145,7 +145,7 @@ let TesseractController = class TesseractController {
                     total = parseInt(total);
                 }
                 // ----------------------------------
-                console.log({ data: { ht: ht, tva: tva, ttc: total, date: date, no: no } });
+                // console.log({data: {ht: ht, tva: tva, ttc: total, date: date, no: no}});
                 // return {data : {ht : ht, tva : tva , ttc : total , date : date}}
                 // UPDATE READ DATA
                 var _ht = parseInt(ht);
