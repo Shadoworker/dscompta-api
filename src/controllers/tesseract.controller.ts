@@ -234,8 +234,11 @@ export class TesseractController {
           //@ts-ignore
           date = bill.date;
 
+
+
         bill.status = "success";
         bill.date = date;
+        bill.no_piece = no;
         bill.ht = _ht;
         bill.tva = parseInt(tva);
         bill.ttc = total;
