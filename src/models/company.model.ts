@@ -1,6 +1,6 @@
-import {Entity, model, property, hasMany} from '@loopback/repository';
-import {User} from './user.model';
+import {Entity, hasMany, model, property} from '@loopback/repository';
 import {Bill} from './bill.model';
+import {User} from './user.model';
 
 @model({settings: {strict: false}})
 export class Company extends Entity {
@@ -64,6 +64,12 @@ export class Company extends Entity {
     default: false,
   })
   has_owner?: boolean;
+
+  @property({
+    type: 'array',
+    itemType: 'object'
+  })
+  config?: object[];
 
   @hasMany(() => User)
   users: User[];
