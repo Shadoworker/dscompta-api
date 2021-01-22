@@ -29,7 +29,41 @@ export class ComputedBill extends Entity {
   @property({
     type: 'string',
   })
+  bill_from_address?: string;
+
+  @property({
+    type: 'number',
+  })
+  bill_from_tel?: number;
+
+  @property({
+    type: 'string',
+  })
+  bill_from_mail?: string;
+
+  // bill_from_address
+  // bill_from_tel
+  // bill_from_mail
+
+  @property({
+    type: 'string',
+  })
   to_name?: string;
+
+  @property({
+    type: 'string',
+  })
+  bill_to_address?: string;
+
+  @property({
+    type: 'number',
+  })
+  bill_to_tel?: number;
+
+  @property({
+    type: 'string',
+  })
+  bill_to_mail?: string;
 
   @property({
     type: 'string',
@@ -95,6 +129,13 @@ export class ComputedBill extends Entity {
     default: "Non suivi",
   })
   status?: string;
+
+  @property({
+    type: 'string',
+    default: "",
+  })
+  legal?: string;
+
 
   @hasMany(() => ComputedBillItem)
   computedBillItems: ComputedBillItem[];
