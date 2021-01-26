@@ -2,6 +2,8 @@
 // Node module: @loopback/example-file-transfer
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
+export * from './archive-company.controller';
+export * from './archive.controller';
 export * from './bill-company.controller';
 export * from './bill.controller';
 export * from './company-bill.controller';
