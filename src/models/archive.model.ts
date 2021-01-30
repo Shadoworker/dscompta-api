@@ -11,7 +11,7 @@ export class Archive extends Entity {
   id?: string;
 
   @property({
-    type: 'object'
+    type: 'object',
   })
   files?: object;
 

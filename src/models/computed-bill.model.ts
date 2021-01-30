@@ -41,9 +41,15 @@ export class ComputedBill extends Entity {
   })
   bill_from_mail?: string;
 
-  // bill_from_address
-  // bill_from_tel
-  // bill_from_mail
+  @property({
+    type: 'string',
+  })
+  bill_from_city?: string;
+
+  @property({
+    type: 'number',
+  })
+  bill_from_zipcode?: number;
 
   @property({
     type: 'string',
@@ -64,6 +70,16 @@ export class ComputedBill extends Entity {
     type: 'string',
   })
   bill_to_mail?: string;
+
+  @property({
+    type: 'string',
+  })
+  bill_to_city?: string;
+
+  @property({
+    type: 'number',
+  })
+  bill_to_zipcode?: number;
 
   @property({
     type: 'string',
