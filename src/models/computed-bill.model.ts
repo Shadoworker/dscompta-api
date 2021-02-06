@@ -142,6 +142,12 @@ export class ComputedBill extends Entity {
 
   @property({
     type: 'string',
+    default: "",
+  })
+  companyDesc?: string;
+
+  @property({
+    type: 'string',
     default: "Non suivi",
   })
   status?: string;
