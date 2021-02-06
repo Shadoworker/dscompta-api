@@ -25,6 +25,12 @@ export class Company extends Entity {
 
   @property({
     type: 'string',
+    default: 'mon-entreprise'
+  })
+  domain_name?: string;
+
+  @property({
+    type: 'string',
     required: true,
   })
   address: string;
