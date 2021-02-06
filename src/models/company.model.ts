@@ -66,10 +66,10 @@ export class Company extends Entity {
   has_owner?: boolean;
 
   @property({
-    type: 'array',
+    type: 'object',
     itemType: 'object'
   })
-  config?: object[];
+  config?: object;
 
   @hasMany(() => User)
   users: User[];
