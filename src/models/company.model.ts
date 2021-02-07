@@ -42,6 +42,11 @@ export class Company extends Entity {
   })
   type: string;
 
+  @property({
+    type: 'string',
+    default: ""
+  })
+  affiliatedId: string;
 
   @property({
     type: 'string',
