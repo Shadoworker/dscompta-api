@@ -1,5 +1,4 @@
-import {Entity, model, property, hasMany, belongsTo} from '@loopback/repository';
-import {Bill} from './bill.model';
+import {belongsTo, Entity, model, property} from '@loopback/repository';
 import {Company} from './company.model';
 
 @model({settings: {strict: false}})
@@ -19,6 +18,12 @@ export class User extends Entity {
     default: "customer"
   })
   type: string;
+
+  @property({
+    type: 'string',
+    default: "Expert-comptable"
+  })
+  function: string;
 
   @property({
     type: 'string',
