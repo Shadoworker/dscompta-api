@@ -33,6 +33,11 @@ export class User extends Entity {
 
   @property({
     type: 'string',
+  })
+  customer_email: string;
+
+  @property({
+    type: 'string',
     required: true,
   })
   password: string;
