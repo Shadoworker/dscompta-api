@@ -82,6 +82,19 @@ export class Company extends Entity {
   })
   config?: object;
 
+  @property({
+    type: 'date',
+    default: '$now',
+  })
+  created_at?: Date;
+
+  @property({
+    type: 'date',
+    default: '$now',
+  })
+  updated_at?: Date;
+
+
   @hasMany(() => User)
   users: User[];
 
