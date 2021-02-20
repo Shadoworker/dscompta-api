@@ -13,7 +13,7 @@ export class Company extends Entity {
 
   @property({
     type: 'string',
-    required: true,
+    // required: true,
   })
   rcs: string;
 
