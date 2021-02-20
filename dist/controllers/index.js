@@ -5,6 +5,8 @@ const tslib_1 = require("tslib");
 // Node module: @loopback/example-file-transfer
 // This file is licensed under the MIT License.
 // License text available at https://opensource.org/licenses/MIT
+tslib_1.__exportStar(require("./archive-company.controller"), exports);
+tslib_1.__exportStar(require("./archive.controller"), exports);
 tslib_1.__exportStar(require("./bill-company.controller"), exports);
 tslib_1.__exportStar(require("./bill.controller"), exports);
 tslib_1.__exportStar(require("./company-bill.controller"), exports);

@@ -5,7 +5,17 @@ export declare class ComputedBill extends Entity {
     name?: string;
     no_ref?: number;
     from_name?: string;
+    bill_from_address?: string;
+    bill_from_tel?: number;
+    bill_from_mail?: string;
+    bill_from_city?: string;
+    bill_from_zipcode?: number;
     to_name?: string;
+    bill_to_address?: string;
+    bill_to_tel?: number;
+    bill_to_mail?: string;
+    bill_to_city?: string;
+    bill_to_zipcode?: number;
     to_id?: string;
     date?: string;
     to_address?: string;
@@ -17,7 +27,9 @@ export declare class ComputedBill extends Entity {
     signing?: string;
     type?: string;
     conditions?: string;
+    companyDesc?: string;
     status?: string;
+    legal?: string;
     computedBillItems: ComputedBillItem[];
     companyId: string;
     constructor(data?: Partial<ComputedBill>);

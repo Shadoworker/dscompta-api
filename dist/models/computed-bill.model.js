@@ -41,7 +41,67 @@ tslib_1.__decorate([
         type: 'string',
     }),
     tslib_1.__metadata("design:type", String)
+], ComputedBill.prototype, "bill_from_address", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    tslib_1.__metadata("design:type", Number)
+], ComputedBill.prototype, "bill_from_tel", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], ComputedBill.prototype, "bill_from_mail", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], ComputedBill.prototype, "bill_from_city", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    tslib_1.__metadata("design:type", Number)
+], ComputedBill.prototype, "bill_from_zipcode", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
 ], ComputedBill.prototype, "to_name", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], ComputedBill.prototype, "bill_to_address", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    tslib_1.__metadata("design:type", Number)
+], ComputedBill.prototype, "bill_to_tel", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], ComputedBill.prototype, "bill_to_mail", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], ComputedBill.prototype, "bill_to_city", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'number',
+    }),
+    tslib_1.__metadata("design:type", Number)
+], ComputedBill.prototype, "bill_to_zipcode", void 0);
 tslib_1.__decorate([
     repository_1.property({
         type: 'string',
@@ -115,10 +175,24 @@ tslib_1.__decorate([
 tslib_1.__decorate([
     repository_1.property({
         type: 'string',
+        default: "",
+    }),
+    tslib_1.__metadata("design:type", String)
+], ComputedBill.prototype, "companyDesc", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
         default: "Non suivi",
     }),
     tslib_1.__metadata("design:type", String)
 ], ComputedBill.prototype, "status", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+        default: "",
+    }),
+    tslib_1.__metadata("design:type", String)
+], ComputedBill.prototype, "legal", void 0);
 tslib_1.__decorate([
     repository_1.hasMany(() => computed_bill_item_model_1.ComputedBillItem),
     tslib_1.__metadata("design:type", Array)

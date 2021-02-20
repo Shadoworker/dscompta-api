@@ -9,6 +9,7 @@ const chrono = tslib_1.__importStar(require("chrono-node"));
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
 var ocrad = require('async-ocrad');
+var postmark = require("postmark");
 let config = {
     headers: {
         "Access-Control-Allow-Origin": "*",
@@ -24,6 +25,39 @@ async function _updateBill(bill) {
 function _isDigit(n) {
     return Boolean([true, true, true, true, true, true, true, true, true, true][n]);
 }
+let UserMail = class UserMail extends repository_1.Entity {
+    constructor(data) {
+        super(data);
+    }
+};
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], UserMail.prototype, "name", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], UserMail.prototype, "customer_mail", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], UserMail.prototype, "username", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], UserMail.prototype, "password", void 0);
+UserMail = tslib_1.__decorate([
+    repository_1.model(),
+    tslib_1.__metadata("design:paramtypes", [Object])
+], UserMail);
 let TesseractController = class TesseractController {
     constructor(tesseractRepository) {
         this.tesseractRepository = tesseractRepository;
@@ -158,6 +192,7 @@ let TesseractController = class TesseractController {
                     date = bill.date;
                 bill.status = "success";
                 bill.date = date;
+                bill.no_piece = no;
                 bill.ht = _ht;
                 bill.tva = parseInt(tva);
                 bill.ttc = total;
@@ -200,40 +235,33 @@ let TesseractController = class TesseractController {
     //     //  |_____ Call a specific method for that SaveRef(image, data) --> Give Id and Append Type (Compta, Bill, Order, DebCard ...)
     //   })
     // }
-    // @post('/ocradize', {
-    //   responses: {
-    //     '200': {
-    //       description: 'File Read',
-    //       content: {
-    //         'application/json': {
-    //           schema: {
-    //             type: 'string',
-    //             properties: {
-    //               output: {
-    //                 type: 'string'
-    //               }
-    //             }
-    //           }
-    //         }
-    //       }
-    //     }
-    //   }
-    // })
-    // async ocradize(@requestBody({
-    //   content: {
-    //     'application/json': {
-    //       schema: getModelSchemaRef(Bill, {
-    //         title: 'NewUpload',
-    //       }),
-    //     },
-    //   },
-    // })
-    // bill: Bill): Promise<any> {
-    //   var uri = bill.uri;
-    //   const text = await ocrad(uri);
-    //   console.log(text);
-    //   return "processed";
-    // }
+    async ocradize(data) {
+        // Send an email:
+        var client = new postmark.ServerClient("32dc1cda-21fe-4f6d-a0bf-caa7e8441f16");
+        var to = data.customer_mail;
+        var username = data.username;
+        var password = data.password;
+        var html = `<span>Bonjour ${data.name} </span><br/>,
+
+    <span>Nous vous remercions pour avoir choisi de tester notre application. Nous vous offrons une période de test de 14 jours.
+    Intégrer votre comptabilité dans D’s Compta et digitalisez votre comptabilité.</span><br/><br/>
+
+    <span style='color:#7ed07e'><strong>Votre compte est actif.</strong></span><br/>
+    <span style='color:#1a1a1a'> Nom d'utilisateur : ${data.username} </span><br/>
+    <span style='color:#1a1a1a'> Mot de passe : ${data.password} </span><br/><br/>
+
+    <a href='https://www.google.fr' style='color:#ab3134; text-decoration:underline' >Connectez-vous à votre espace</a> `;
+        const text = await client.sendEmail({
+            "From": "habibe@kayfo.games",
+            "To": "shadowimagic@gmail.com",
+            "Subject": "D's Compta : Données de connexion",
+            "HtmlBody": html,
+            "TextBody": "D's Compta : Données de connexion!",
+            "MessageStream": "outbound"
+        });
+        console.log(text);
+        return "processed";
+    }
     async create(tesseract) {
         return this.tesseractRepository.create(tesseract);
     }
@@ -292,6 +320,39 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [Array]),
     tslib_1.__metadata("design:returntype", Promise)
 ], TesseractController.prototype, "tess", null);
+tslib_1.__decorate([
+    rest_1.post('/ocradize', {
+        responses: {
+            '200': {
+                description: 'File Read',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'string',
+                            properties: {
+                                output: {
+                                    type: 'string'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }),
+    tslib_1.__param(0, rest_1.requestBody({
+        content: {
+            'application/json': {
+                schema: rest_1.getModelSchemaRef(UserMail, {
+                    title: 'UserCredentials',
+                }),
+            },
+        },
+    })),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [UserMail]),
+    tslib_1.__metadata("design:returntype", Promise)
+], TesseractController.prototype, "ocradize", null);
 tslib_1.__decorate([
     rest_1.post('/tesseracts', {
         responses: {

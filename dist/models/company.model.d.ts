@@ -1,17 +1,20 @@
 import { Entity } from '@loopback/repository';
-import { User } from './user.model';
 import { Bill } from './bill.model';
+import { User } from './user.model';
 export declare class Company extends Entity {
     id?: string;
     rcs: string;
     name: string;
+    domain_name?: string;
     address: string;
     type: string;
+    affiliatedId: string;
     owner_name?: string;
     owner_surname?: string;
     license: string;
     is_active?: boolean;
     has_owner?: boolean;
+    config?: object;
     users: User[];
     bills: Bill[];
     [prop: string]: any;

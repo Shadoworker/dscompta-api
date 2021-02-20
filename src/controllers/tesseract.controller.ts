@@ -1,9 +1,7 @@
 import {
   Count,
-  CountSchema,
-  Filter,
-  FilterExcludingWhere,
-  repository,
+  CountSchema, Filter,
+  FilterExcludingWhere, repository,
   Where
 } from '@loopback/repository';
 import {
@@ -26,6 +24,7 @@ import {Bill, Tesseract} from '../models';
 import {TesseractRepository} from '../repositories';
 
 var ocrad = require('async-ocrad');
+var postmark = require("postmark");
 
 let config: AxiosRequestConfig = {
   headers: {
@@ -47,6 +46,8 @@ async function _updateBill(bill: any) {
 function _isDigit(n: any) {
   return Boolean([true, true, true, true, true, true, true, true, true, true][n]);
 }
+
+
 
 export class TesseractController {
   constructor(
@@ -297,47 +298,6 @@ export class TesseractController {
 
   //   })
   // }
-
-
-  // @post('/ocradize', {
-  //   responses: {
-  //     '200': {
-  //       description: 'File Read',
-  //       content: {
-  //         'application/json': {
-  //           schema: {
-  //             type: 'string',
-  //             properties: {
-  //               output: {
-  //                 type: 'string'
-  //               }
-  //             }
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // })
-
-  // async ocradize(@requestBody({
-  //   content: {
-  //     'application/json': {
-
-  //       schema: getModelSchemaRef(Bill, {
-  //         title: 'NewUpload',
-  //       }),
-  //     },
-  //   },
-  // })
-  // bill: Bill): Promise<any> {
-
-  //   var uri = bill.uri;
-  //   const text = await ocrad(uri);
-  //   console.log(text);
-  //   return "processed";
-
-  // }
-
 
 
 

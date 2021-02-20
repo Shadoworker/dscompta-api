@@ -28,10 +28,23 @@ tslib_1.__decorate([
 tslib_1.__decorate([
     repository_1.property({
         type: 'string',
+        default: "Expert-comptable"
+    }),
+    tslib_1.__metadata("design:type", String)
+], User.prototype, "function", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
         required: true,
     }),
     tslib_1.__metadata("design:type", String)
 ], User.prototype, "email", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], User.prototype, "customer_email", void 0);
 tslib_1.__decorate([
     repository_1.property({
         type: 'string',

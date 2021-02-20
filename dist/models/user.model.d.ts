@@ -2,7 +2,9 @@ import { Entity } from '@loopback/repository';
 export declare class User extends Entity {
     id?: string;
     type: string;
+    function: string;
     email: string;
+    customer_email: string;
     password: string;
     name?: string;
     surname?: string;

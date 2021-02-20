@@ -1,3 +1,5 @@
+export * from './archive-company.controller';
+export * from './archive.controller';
 export * from './bill-company.controller';
 export * from './bill.controller';
 export * from './company-bill.controller';

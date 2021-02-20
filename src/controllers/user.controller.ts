@@ -1,9 +1,13 @@
 import {
   Count,
   CountSchema,
-  Filter,
+
+
+
+  Entity, Filter,
   FilterExcludingWhere,
-  repository,
+
+  model, property, repository,
   Where
 } from '@loopback/repository';
 import {
@@ -22,17 +26,57 @@ import {
 } from '@loopback/rest';
 import {User} from '../models';
 import {UserRepository} from '../repositories';
+var postmark = require("postmark");
 
 // const worker = createWorker({
 //   logger: m => console.log(m)
 // });
 
+
+@model()
+class UserMail extends Entity {
+
+  @property({
+    type: 'string',
+  })
+  name?: string;
+
+  @property({
+    type: 'string',
+  })
+  customer_mail?: string;
+
+  @property({
+    type: 'string',
+  })
+  subject?: string;
+
+  @property({
+    type: 'string',
+  })
+  html?: string;
+
+  @property({
+    type: 'string',
+  })
+  username?: string;
+
+  @property({
+    type: 'string',
+  })
+  password?: string;
+
+  constructor(data?: Partial<UserMail>) {
+    super(data);
+  }
+}
+
 export class UserController {
   constructor(
     @repository(UserRepository)
     public userRepository: UserRepository,
-  ) {}
- 
+  ) { }
+
 
   @post('/users', {
     responses: {
@@ -114,6 +158,66 @@ export class UserController {
   ): Promise<Count> {
     return this.userRepository.updateAll(user, where);
   }
+
+
+
+  @post('/send_user_mail', {
+    responses: {
+      '200': {
+        description: 'File Read',
+        content: {
+          'application/json': {
+            schema: {
+              type: 'string',
+              properties: {
+                output: {
+                  type: 'string'
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  })
+
+  async send_user_mail(@requestBody({
+    content: {
+      'application/json': {
+
+        schema: getModelSchemaRef(UserMail, {
+          title: 'UserCredentials',
+        }),
+      },
+    },
+  })
+  data: UserMail): Promise<any> {
+
+    // Send an email:
+    var client = new postmark.ServerClient("32dc1cda-21fe-4f6d-a0bf-caa7e8441f16");
+
+    var to = data.customer_mail;
+    var subject = data.subject;
+    var html = data.html;
+
+
+    const text = await client.sendEmail({
+      "From": "habibe@kayfo.games",
+      "To": to,
+      "Subject": subject,
+      "HtmlBody": html,
+      "TextBody": subject,
+      "MessageStream": "outbound"
+    });
+
+    console.log(text);
+
+    return "processed";
+
+  }
+
+
+
 
   @get('/users/{id}', {
     responses: {
