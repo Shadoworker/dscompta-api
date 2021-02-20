@@ -210,9 +210,9 @@ export class UserController {
       "MessageStream": "outbound"
     });
 
-    console.log(text);
+    // console.log(text);
 
-    return "processed";
+    return text;
 
   }
 
