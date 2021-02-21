@@ -10,6 +10,11 @@ export class CustomerCard extends Entity {
   id?: string;
 
   @property({
+    type: 'string',
+  })
+  name?: string;
+
+  @property({
     type: 'object',
   })
   data?: object;
