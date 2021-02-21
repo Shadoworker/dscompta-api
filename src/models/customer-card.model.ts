@@ -25,6 +25,10 @@ export class CustomerCard extends Entity {
   })
   active?: boolean;
 
+  @property({
+    type: 'string',
+  })
+  companyId?: string;
 
   constructor(data?: Partial<CustomerCard>) {
     super(data);
