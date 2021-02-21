@@ -7,6 +7,7 @@ tslib_1.__exportStar(require("./bill.repository"), exports);
 tslib_1.__exportStar(require("./company.repository"), exports);
 tslib_1.__exportStar(require("./computed-bill-item.repository"), exports);
 tslib_1.__exportStar(require("./computed-bill.repository"), exports);
+tslib_1.__exportStar(require("./customer-card.repository"), exports);
 tslib_1.__exportStar(require("./license.repository"), exports);
 // export * from './product.repository';
 tslib_1.__exportStar(require("./tesseract.repository"), exports);

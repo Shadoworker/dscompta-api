@@ -6,9 +6,55 @@ const repository_1 = require("@loopback/repository");
 const rest_1 = require("@loopback/rest");
 const models_1 = require("../models");
 const repositories_1 = require("../repositories");
+var postmark = require("postmark");
 // const worker = createWorker({
 //   logger: m => console.log(m)
 // });
+let UserMail = class UserMail extends repository_1.Entity {
+    constructor(data) {
+        super(data);
+    }
+};
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], UserMail.prototype, "name", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], UserMail.prototype, "customer_mail", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], UserMail.prototype, "subject", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], UserMail.prototype, "html", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], UserMail.prototype, "username", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'string',
+    }),
+    tslib_1.__metadata("design:type", String)
+], UserMail.prototype, "password", void 0);
+UserMail = tslib_1.__decorate([
+    repository_1.model(),
+    tslib_1.__metadata("design:paramtypes", [Object])
+], UserMail);
 let UserController = class UserController {
     constructor(userRepository) {
         this.userRepository = userRepository;
@@ -24,6 +70,23 @@ let UserController = class UserController {
     }
     async updateAll(user, where) {
         return this.userRepository.updateAll(user, where);
+    }
+    async send_user_mail(data) {
+        // Send an email:
+        var client = new postmark.ServerClient("32dc1cda-21fe-4f6d-a0bf-caa7e8441f16");
+        var to = data.customer_mail;
+        var subject = data.subject;
+        var html = data.html;
+        const text = await client.sendEmail({
+            "From": "habibe@kayfo.games",
+            "To": to,
+            "Subject": subject,
+            "HtmlBody": html,
+            "TextBody": subject,
+            "MessageStream": "outbound"
+        });
+        // console.log(text);
+        return text;
     }
     async findById(id, filter) {
         return this.userRepository.findById(id, filter);
@@ -116,6 +179,39 @@ tslib_1.__decorate([
     tslib_1.__metadata("design:paramtypes", [models_1.User, Object]),
     tslib_1.__metadata("design:returntype", Promise)
 ], UserController.prototype, "updateAll", null);
+tslib_1.__decorate([
+    rest_1.post('/send_user_mail', {
+        responses: {
+            '200': {
+                description: 'File Read',
+                content: {
+                    'application/json': {
+                        schema: {
+                            type: 'string',
+                            properties: {
+                                output: {
+                                    type: 'string'
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }),
+    tslib_1.__param(0, rest_1.requestBody({
+        content: {
+            'application/json': {
+                schema: rest_1.getModelSchemaRef(UserMail, {
+                    title: 'UserCredentials',
+                }),
+            },
+        },
+    })),
+    tslib_1.__metadata("design:type", Function),
+    tslib_1.__metadata("design:paramtypes", [UserMail]),
+    tslib_1.__metadata("design:returntype", Promise)
+], UserController.prototype, "send_user_mail", null);
 tslib_1.__decorate([
     rest_1.get('/users/{id}', {
         responses: {

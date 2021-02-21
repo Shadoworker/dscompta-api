@@ -8,6 +8,7 @@ tslib_1.__exportStar(require("./bill.model"), exports);
 tslib_1.__exportStar(require("./company.model"), exports);
 tslib_1.__exportStar(require("./computed-bill-item.model"), exports);
 tslib_1.__exportStar(require("./computed-bill.model"), exports);
+tslib_1.__exportStar(require("./customer-card.model"), exports);
 tslib_1.__exportStar(require("./license.model"), exports);
 tslib_1.__exportStar(require("./tesseract.model"), exports);
 tslib_1.__exportStar(require("./user.model"), exports);

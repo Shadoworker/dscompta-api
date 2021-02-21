@@ -18,6 +18,7 @@ tslib_1.__exportStar(require("./computed-bill-computed-bill-item.controller"), e
 tslib_1.__exportStar(require("./computed-bill-item-computed-bill.controller"), exports);
 tslib_1.__exportStar(require("./computed-bill-item.controller"), exports);
 tslib_1.__exportStar(require("./computed-bill.controller"), exports);
+tslib_1.__exportStar(require("./customer-card.controller"), exports);
 tslib_1.__exportStar(require("./file-download.controller"), exports);
 tslib_1.__exportStar(require("./file-upload.controller"), exports);
 tslib_1.__exportStar(require("./license.controller"), exports);

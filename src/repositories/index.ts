@@ -4,6 +4,7 @@ export * from './bill.repository';
 export * from './company.repository';
 export * from './computed-bill-item.repository';
 export * from './computed-bill.repository';
+export * from './customer-card.repository';
 export * from './license.repository';
 // export * from './product.repository';
 export * from './tesseract.repository';

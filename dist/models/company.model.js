@@ -21,7 +21,6 @@ tslib_1.__decorate([
 tslib_1.__decorate([
     repository_1.property({
         type: 'string',
-        required: true,
     }),
     tslib_1.__metadata("design:type", String)
 ], Company.prototype, "rcs", void 0);
@@ -101,6 +100,20 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", Object)
 ], Company.prototype, "config", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'date',
+        default: '$now',
+    }),
+    tslib_1.__metadata("design:type", Date)
+], Company.prototype, "created_at", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'date',
+        default: '$now',
+    }),
+    tslib_1.__metadata("design:type", Date)
+], Company.prototype, "updated_at", void 0);
 tslib_1.__decorate([
     repository_1.hasMany(() => user_model_1.User),
     tslib_1.__metadata("design:type", Array)

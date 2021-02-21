@@ -15,6 +15,7 @@ export * from './computed-bill-computed-bill-item.controller';
 export * from './computed-bill-item-computed-bill.controller';
 export * from './computed-bill-item.controller';
 export * from './computed-bill.controller';
+export * from './customer-card.controller';
 export * from './file-download.controller';
 export * from './file-upload.controller';
 export * from './license.controller';
