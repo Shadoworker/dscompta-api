@@ -1,5 +1,6 @@
 // export * from './intervention.model';
 export * from './archive.model';
+export * from './bank-card.model';
 // export * from './product.model';
 export * from './bill.model';
 export * from './company.model';

@@ -4,6 +4,7 @@
 // License text available at https://opensource.org/licenses/MIT
 export * from './archive-company.controller';
 export * from './archive.controller';
+export * from './bank-card.controller';
 export * from './bill-company.controller';
 export * from './bill.controller';
 export * from './company-bill.controller';

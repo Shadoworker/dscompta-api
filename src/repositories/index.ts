@@ -1,5 +1,6 @@
 // export * from './intervention.repository';
 export * from './archive.repository';
+export * from './bank-card.repository';
 export * from './bill.repository';
 export * from './company.repository';
 export * from './computed-bill-item.repository';
