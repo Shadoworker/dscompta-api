@@ -1,6 +1,7 @@
 // export * from './intervention.repository';
 export * from './archive.repository';
 export * from './bank-card.repository';
+export * from './bank-exercise.repository';
 export * from './bank-statement.repository';
 export * from './bill.repository';
 export * from './company.repository';
