@@ -94,6 +94,11 @@ export class Company extends Entity {
   })
   updated_at?: Date;
 
+  @property({
+    type: 'number',
+    default: new Date().getFullYear()
+  })
+  exercise_year: number;
 
   @hasMany(() => User)
   users: User[];
