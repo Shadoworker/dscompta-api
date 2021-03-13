@@ -83,6 +83,22 @@ export class Company extends Entity {
   config?: object;
 
   @property({
+    type: 'object',
+    itemType: 'object',
+    default: {
+      name: "Trial",
+      price: 0,
+      access: 1,
+      ds_scan: true,
+      ds_bank: true,
+      ds_archi: true,
+      ds_ai: true,
+      ds_fact: true
+    }
+  })
+  pack?: object;
+
+  @property({
     type: 'date',
     default: '$now',
   })
