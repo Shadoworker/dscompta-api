@@ -1,4 +1,7 @@
 export * from './archive.model';
+export * from './bank-card.model';
+export * from './bank-exercise.model';
+export * from './bank-statement.model';
 export * from './bill.model';
 export * from './company.model';
 export * from './computed-bill-item.model';

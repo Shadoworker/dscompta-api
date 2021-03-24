@@ -102,6 +102,23 @@ tslib_1.__decorate([
 ], Company.prototype, "config", void 0);
 tslib_1.__decorate([
     repository_1.property({
+        type: 'object',
+        itemType: 'object',
+        default: {
+            name: "Trial",
+            price: 0,
+            access: 1,
+            ds_scan: true,
+            ds_bank: true,
+            ds_archi: true,
+            ds_ai: true,
+            ds_fact: true
+        }
+    }),
+    tslib_1.__metadata("design:type", Object)
+], Company.prototype, "pack", void 0);
+tslib_1.__decorate([
+    repository_1.property({
         type: 'date',
         default: '$now',
     }),
@@ -114,6 +131,13 @@ tslib_1.__decorate([
     }),
     tslib_1.__metadata("design:type", Date)
 ], Company.prototype, "updated_at", void 0);
+tslib_1.__decorate([
+    repository_1.property({
+        type: 'number',
+        default: new Date().getFullYear()
+    }),
+    tslib_1.__metadata("design:type", Number)
+], Company.prototype, "exercise_year", void 0);
 tslib_1.__decorate([
     repository_1.hasMany(() => user_model_1.User),
     tslib_1.__metadata("design:type", Array)

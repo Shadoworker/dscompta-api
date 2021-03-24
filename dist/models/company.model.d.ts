@@ -15,8 +15,10 @@ export declare class Company extends Entity {
     is_active?: boolean;
     has_owner?: boolean;
     config?: object;
+    pack?: object;
     created_at?: Date;
     updated_at?: Date;
+    exercise_year: number;
     users: User[];
     bills: Bill[];
     [prop: string]: any;
